@@ -5,7 +5,7 @@ How to use:
      python telegen.py <option1> <argument1> <option2> <argument2> ....
 
 Command Line Options:
-     -h, --help            
+     -h, --help
           show this help message and exit
      --startprocess <process>
           start a process/shell command
