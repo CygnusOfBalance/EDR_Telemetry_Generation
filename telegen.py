@@ -177,7 +177,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Red Canary Telemetry Generation')
 
     parser.add_argument('--startprocess', metavar='<process>', type=str,
-                        help="start a process with a path to an executable file", required=False)
+                        help="start a process/shell command", required=False)
 
     parser.add_argument('--createfile', metavar='<file_path>', type=str,
                         help="create a file at the specified location", required=False)
@@ -188,7 +188,8 @@ if __name__ == "__main__":
     parser.add_argument('--deletefile', metavar='<file_path>', type=str,
                         help="delete a file at the specified location", required=False)
 
-    parser.add_argument('--startconnection', help="delete a file at the specified location",
+    parser.add_argument('--startconnection',
+                        help="start a connection with google.com and transmit data",
                         required=False, action='store_true')
 
     args = parser.parse_args()
