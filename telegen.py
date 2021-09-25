@@ -12,8 +12,14 @@ import socket
 from csv import writer
 from subprocess import Popen, PIPE
 
-### logData ###
-### Method for writing data to our specified log ###
+#-------------------------------------------------------------------------------
+# logData()
+# takes data from array and writes it to the given path of a csv file
+#
+# :param log_path: a string denoting the path of a CSV file in which we wish to
+#                  write log info to
+# :param elements: array of elements that will coordinate to rows in csv
+#-------------------------------------------------------------------------------
 def logData(log_path, elements):
     try:
         with open(log_path, 'a+', newline='') as fileObj:
@@ -24,8 +30,14 @@ def logData(log_path, elements):
         print("Exception: ")
         print(a)
 
-### aggregrateFileData ###
-### Method for aggregating all log data regarding file mods, creation, and deletion ###
+#-------------------------------------------------------------------------------
+# aggregateFileData()
+# Aggregates all log data regarding file mods, creation, and deletion
+#
+# :param activity_arg: A string denoting whether were deleting, modding,
+#                      or creating a file
+# :param filePath: A string denoting the path of the file we are acting on
+#-------------------------------------------------------------------------------
 def aggregrateFileData(activity_arg, filePath):
     dateTime = datetime.datetime.now()
     path = os.path.abspath(filePath)
@@ -45,9 +57,12 @@ def aggregrateFileData(activity_arg, filePath):
     elements = [dateTime, path, activity, user, processName, commandLine, pid]
     logData("./logs/file_log.csv", elements)
 
-
-### startProcess ###
-### Method for starting the given process with specified commandline args ###
+#-------------------------------------------------------------------------------
+# startProcess()
+# starts the given process with specified commandline args
+#
+# :param command: A string denoting the command in which we would like to run
+#-------------------------------------------------------------------------------
 def startProcess(command):
     print("Starting Process: " + str(command))
     commandArr = command.split(" ")
@@ -74,8 +89,13 @@ def startProcess(command):
 
     print("Data from the process has been logged at <telegen.py_directory>/logs/process_log.csv")
 
-### createFile ###
-### method for creating a file at the specified path ###
+#-------------------------------------------------------------------------------
+# createFile()
+# Creates a file at a specified path
+#
+# :param filePath: A string denoting the path in which the file will be created
+# :return None: Only return if an error is thrown
+#-------------------------------------------------------------------------------
 def createFile(filePath):
 
     ### Checks if file exists
@@ -100,8 +120,13 @@ def createFile(filePath):
 
     print("Data from the process has been logged at <telegen.py_directory>/logs/file_log.csv")
 
-### modifyFile ###
-### method for modifying a file at the specified path ###
+#-------------------------------------------------------------------------------
+# modifyFile()
+# Modifies file at a specified path
+#
+# :param filePath: A string denoting the path in which the file will be created
+# :return None: Only return if an error is thrown
+#-------------------------------------------------------------------------------
 def modifyFile(filePath):
 
     ### Checks if file doesn't exist
@@ -128,8 +153,13 @@ def modifyFile(filePath):
 
     print("Data from the process has been logged at <telegen.py_directory>/logs/file_log.csv")
 
-### deleteFile ###
-### method for deleting a file at the specified path ###
+#-------------------------------------------------------------------------------
+# deleteFile()
+# Deletes a file at the specified path
+#
+# :param filePath: A string denoting the path in which the file will be created
+# :return None: Only return if an error is thrown
+#-------------------------------------------------------------------------------
 def deleteFile(filePath):
     try:
         os.remove(filePath)
@@ -147,8 +177,12 @@ def deleteFile(filePath):
 
     print("Data from the process has been logged at <telegen.py_directory>/logs/file_log.csv")
 
-### establishConnection ###
-### method for establishing a connection and transmitting data ###
+#-------------------------------------------------------------------------------
+# establishConnection()
+# Establishes a connection to google.com and transmits data
+#
+# :return None: Only return if an error is thrown
+#-------------------------------------------------------------------------------
 def establishConnection():
 
     print("Establish a connection at google.com:80")
@@ -194,7 +228,7 @@ def establishConnection():
 
 if __name__ == "__main__":
 
-    ###Change to file directory###
+    ### Change to file directory
     abspath = os.path.abspath(__file__)
     dname = os.path.dirname(abspath)
     os.chdir(dname)
