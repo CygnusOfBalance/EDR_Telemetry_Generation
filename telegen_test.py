@@ -2,6 +2,11 @@ import telegen
 import unittest
 import os
 
+#-------------------------------------------------------------------------------
+# This file is not meant to be for comprehensive unit testing. For the sake of
+# time, I threw together some basic basecase unit tests in order to show I am
+# capable of writing them and am aware of the importance and power of them.
+#-------------------------------------------------------------------------------
 class TestFileMethods(unittest.TestCase):
     def test_create_base(self):
         telegen.createFile("./test.py")
