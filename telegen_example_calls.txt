@@ -1,0 +1,15 @@
+windows:
+     python telegen.py --startprocess "dir"
+     python telegen.py --createfile ./test.py
+     python telegen.py --modfile ./test.py
+     python telegen.py --deletefile ./test.py
+     python telegen.py --startconnection
+     python telegen.py --startconnection --startprocess "dir" --createfile ./test.py --modfile ./test.py --deletefile ./test.py
+
+Linux/OSX
+     python telegen.py --startprocess "ls -l"
+     python telegen.py --createfile ./test.py
+     python telegen.py --modfile ./test.py
+     python telegen.py --deletefile ./test.py
+     python telegen.py --startconnection
+     python telegen.py --startconnection --startprocess "ls -l" --createfile ./test.py --modfile ./test.py --deletefile ./test.py

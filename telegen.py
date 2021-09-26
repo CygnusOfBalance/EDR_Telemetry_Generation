@@ -62,11 +62,18 @@ def aggregrateFileData(activity_arg, filePath):
 # starts the given process with specified commandline args
 #
 # :param command: A string denoting the command in which we would like to run
+# :return None: Only return if an error is thrown
 #-------------------------------------------------------------------------------
 def startProcess(command):
     print("Starting Process: " + str(command))
     commandArr = command.split(" ")
-    process = Popen(commandArr, stdout=PIPE, stdin=PIPE, shell=True)
+    try:
+        process = Popen(commandArr, stdout=PIPE, stdin=PIPE, shell=True)
+    except Exception as a:
+        print("ERROR: There was an error attempting to call command  " + command)
+        print("Exception: ")
+        print(a)
+        return None
 
     ### this has to be done so the command doesn't throw a write error
     output = process.stdout.read()
@@ -106,10 +113,10 @@ def createFile(filePath):
 
     ### Error handles any other problems
     try:
-        f=open(filePath, "a+")
+        f=open(filePath, "w+")
     except Exception as a:
-        print("ERROR: There was an error attempting to modify the file at " + filePath)
-        print("Cancelling file modification...")
+        print("ERROR: There was an error attempting to create the file at " + filePath)
+        print("Cancelling file creation...")
         print("Exception: ")
         print(a)
         return None
@@ -238,7 +245,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Red Canary Telemetry Generation')
 
     parser.add_argument('--startprocess', metavar='\"<process>\"', type=str,
-                        help="start a process/shell command", required=False)
+                        help="start a process/shell command (i.e. ls -l)", required=False)
 
     parser.add_argument('--createfile', metavar='<file_path>', type=str,
                         help="create a file at the specified location", required=False)
