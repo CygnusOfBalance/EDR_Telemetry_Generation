@@ -240,7 +240,6 @@ if __name__ == "__main__":
     dname = os.path.dirname(abspath)
     os.chdir(dname)
 
-    print(os.getcwd())
     ### argparse is used to create command line arguments for the framework
     parser = argparse.ArgumentParser(description='Red Canary Telemetry Generation')
 
